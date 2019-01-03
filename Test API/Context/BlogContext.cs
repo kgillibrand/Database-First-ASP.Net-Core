@@ -1,8 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using TestAPI.Models;
 
-namespace TestAPI.Models
+namespace TestAPI.Context
 {
     public partial class BlogContext : DbContext
     {
