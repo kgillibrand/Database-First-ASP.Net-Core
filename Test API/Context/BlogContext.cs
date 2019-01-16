@@ -35,13 +35,11 @@ namespace TestAPI.Context
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.AuthorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("comments_author_id_fkey");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Comments)
                     .HasForeignKey(d => d.PostId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("comments_post_id_fkey");
             });
 
@@ -56,7 +54,6 @@ namespace TestAPI.Context
                 entity.HasOne(d => d.Author)
                     .WithMany(p => p.Posts)
                     .HasForeignKey(d => d.AuthorId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("posts_author_id_fkey");
             });
         }
