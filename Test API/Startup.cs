@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CWSTeam.AspCoreExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,7 +29,7 @@ namespace Test_API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().
+            services.AddMvc(config => config.Filters.Add(new ValidateModelAttribute())).
                 SetCompatibilityVersion(CompatibilityVersion.Version_2_2).
                 AddJsonOptions(opts => opts.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
@@ -48,6 +49,7 @@ namespace Test_API
                 app.UseHsts();
             }
 
+            app.UseMiddleware(typeof(JsonUnhandledExceptionMiddleware));
             app.UseHttpsRedirection();
             app.UseMvc();
         }

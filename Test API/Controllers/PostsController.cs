@@ -26,7 +26,6 @@ namespace Test_API.Controllers
         public ActionResult<List<Post>> GetPosts([FromQuery] bool? isPublic)
         {
             List<Post> posts = null;
-
             if (isPublic == null)
             {
                 posts = _dbContext.Posts.
